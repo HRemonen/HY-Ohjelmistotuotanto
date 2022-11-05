@@ -10,3 +10,6 @@ Ohjelmistotuotanto palautusrepositorio
 - [Tehtävät 1-2 & 10-12](viikko%202) palautuskansio.
 - [Tehtävät 3 & 4](https://github.com/HRemonen/ohtuvarasto) palautusrepositorio.
 - [Versionhallintatehtävät](viikko%202) palautuskansio.
+
+### [Osa 3 - Laadunhallinta ja testaus](https://ohjelmistotuotanto-hy.github.io/osa3/)
+- [Tehtävät 1-11](viikko%203%20) palautuskansio.
