@@ -18,11 +18,6 @@ Login With Incorrect Password
     Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
-Create User And Go To Login Page
-    Create User  kalle  kalle123
-    Go To Login Page
-    Login Page Should Be Open
-    
 Login Should Succeed
     Main Page Should Be Open
 
@@ -41,3 +36,8 @@ Set Username
 Set Password
     [Arguments]  ${password}
     Input Password  password  ${password}
+
+Create User And Go To Login Page
+    Create User  kalle  kalle123
+    Go To Login Page
+    Login Page Should Be Open

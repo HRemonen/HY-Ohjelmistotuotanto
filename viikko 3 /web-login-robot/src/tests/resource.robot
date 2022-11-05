@@ -5,7 +5,7 @@ Library  ../AppLibrary.py
 *** Variables ***
 ${SERVER}  127.0.0.1:5000
 ${BROWSER}  chrome
-${DELAY}  0.5 seconds
+${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}
 ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
