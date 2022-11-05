@@ -1,5 +1,6 @@
 *** Settings ***
 Resource  resource.robot
+Resource  login_resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup  Go To Register Page
@@ -11,7 +12,6 @@ Register With Valid Username And Password
     Set Confirmation  Henelius123
     Submit Register
     Register Should Succeed
-
 
 Register With Too Short Username And Valid Password
     Set Username  h
@@ -34,29 +34,28 @@ Register With Nonmatching Password And Password Confirmation
     Submit Register
     Register Should Fail With Message  Passwords must match
 
-*** Keywords ***
-Register Should Succeed
-    Welcome Page Should Be Open
+Login After Successful Registration
+    Set Username  testiHene
+    Set Password  Henelius123
+    Set Confirmation  Henelius123
+    Submit Register
+    Register Should Succeed
 
-Register Should Fail With Message
-    [Arguments]  ${message}
-    Register Page Should Be Open
-    Page Should Contain  ${message}
+    Go To Login Page
+    Set Username  testiHene
+    Set Password  Henelius123
+    Submit Credentials
+    Login Should Succeed
 
-Submit Credentials
-    Click Button  Login
+Login After Failed Registration
+    Set Username  testiHeneliisa
+    Set Password  Henelius123123
+    Set Confirmation  Henelius123
+    Submit Register
+    Register Should Fail With Message  Passwords must match
 
-Submit Register
-    Click Button  Register
-
-Set Username
-    [Arguments]  ${username}
-    Input Text  username  ${username}
-
-Set Password
-    [Arguments]  ${password}
-    Input Password  password  ${password}
-
-Set Confirmation
-    [Arguments]  ${confirmation}
-    Input Password  password_confirmation  ${confirmation}
+    Go To Login Page
+    Set Username  testiHeneliisa
+    Set Password  Henelius123123
+    Submit Credentials
+    Login Should Fail With Message  Invalid username or password
