@@ -36,4 +36,4 @@ class TestOstoskori(unittest.TestCase):
         self.kori.lisaa_tuote(maito)
 
         ostokset = self.kori.ostokset()
-        self.assertEqual(ostokset, 1)
+        self.assertEqual(len(ostokset), 1)
