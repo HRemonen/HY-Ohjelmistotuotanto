@@ -15,3 +15,6 @@ Ohjelmistotuotanto palautusrepositorio
 
 ### [Osa 4 - Ohjelmiston suunnittelu ja arkkitehtuuri](https://ohjelmistotuotanto-hy.github.io/osa4/)
 - [Tehtävät 1-7 & Versionhallintatehtävät](viikko%204) palautuskansio.
+
+### [Osa 5 - Lean](https://ohjelmistotuotanto-hy.github.io/osa5/)
+- [Tehtävät 1-6 & Versionhallintatehtävät](viikko%205) palautuskansio.
