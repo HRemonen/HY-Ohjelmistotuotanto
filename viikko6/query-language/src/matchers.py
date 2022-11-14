@@ -1,3 +1,10 @@
+class All:
+    def __init__(self, *matchers):
+        self._matchers = matchers
+        
+    def matches(self, *args):
+        return True
+
 class And:
     def __init__(self, *matchers):
         self._matchers = matchers
