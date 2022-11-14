@@ -1,57 +1,53 @@
+SCORES = ["Love", "Fifteen", "Thirty", "Forty", "Deuce"]
+
+class Player:
+    def __init__(self, name) -> None:
+        self.name = name
+        self._points = 0
+
+    def won_game(self):
+        self._points += 1
+
+    @property
+    def points(self):
+        return self._points
+    
+    def __str__(self) -> str:
+        return f"{self.name} {SCORES[self._points]}"
+
 class TennisGame:
     def __init__(self, player1_name, player2_name):
-        self.player1_name = player1_name
-        self.player2_name = player2_name
-        self.m_score1 = 0
-        self.m_score2 = 0
+        self.players = {
+            player1_name: Player(player1_name),
+            player2_name: Player(player2_name)
+        }
+        self.player1 = player1_name
+        self.player2 = player2_name
 
     def won_point(self, player_name):
-        if player_name == "player1":
-            self.m_score1 = self.m_score1 + 1
-        else:
-            self.m_score2 = self.m_score2 + 1
+        player = self.players[player_name]
+        player.won_game()
 
     def get_score(self):
-        score = ""
-        temp_score = 0
+        player1 = self.players[self.player1].points
+        player2 = self.players[self.player2].points
+        difference = player1 - player2
 
-        if self.m_score1 == self.m_score2:
-            if self.m_score1 == 0:
-                score = "Love-All"
-            elif self.m_score1 == 1:
-                score = "Fifteen-All"
-            elif self.m_score1 == 2:
-                score = "Thirty-All"
-            elif self.m_score1 == 3:
-                score = "Forty-All"
+        if player1 < 4 and player2 < 4:
+            if player1 == player2:
+                return f"{SCORES[player1]}-All"
+            return f"{SCORES[player1]}-{SCORES[player2]}"
+        
+        elif player1 >= 4 or player2 >= 4:
+            if difference == 0:
+                return "Deuce"
+            elif difference == 1:
+                return "Advantage player1"
+            elif difference == -1:
+                return "Advantage player2"
+            elif difference >= 2:
+                return "Win for player1"
             else:
-                score = "Deuce"
-        elif self.m_score1 >= 4 or self.m_score2 >= 4:
-            minus_result = self.m_score1 - self. m_score2
+                return "Win for player2"
 
-            if minus_result == 1:
-                score = "Advantage player1"
-            elif minus_result == -1:
-                score = "Advantage player2"
-            elif minus_result >= 2:
-                score = "Win for player1"
-            else:
-                score = "Win for player2"
-        else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.m_score1
-                else:
-                    score = score + "-"
-                    temp_score = self.m_score2
 
-                if temp_score == 0:
-                    score = score + "Love"
-                elif temp_score == 1:
-                    score = score + "Fifteen"
-                elif temp_score == 2:
-                    score = score + "Thirty"
-                elif temp_score == 3:
-                    score = score + "Forty"
-
-        return score
