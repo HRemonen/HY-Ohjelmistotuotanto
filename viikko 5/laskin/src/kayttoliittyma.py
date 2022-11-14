@@ -33,7 +33,7 @@ class Kayttoliittyma:
 
     def kaynnista(self):
         self._tulos_var = StringVar()
-        self._tulos_var.set(self._sovelluslogiikka.tulos)
+        self._tulos_var.set(self._sovelluslogiikka.laskimen_arvo())
         self._syote_kentta = ttk.Entry(master=self._root)
 
         tulos_teksti = ttk.Label(textvariable=self._tulos_var)
@@ -80,12 +80,14 @@ class Kayttoliittyma:
     def _suorita_komento(self, komento):
         komento_olio = self._komennot[komento]
         komento_olio.suorita()
+        tulos = self._sovelluslogiikka.laskimen_arvo()
+
         self._kumoa_painike["state"] = constants.NORMAL
 
-        if self._sovelluslogiikka.tulos == 0:
+        if tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
         else:
             self._nollaus_painike["state"] = constants.NORMAL
 
         self._syote_kentta.delete(0, constants.END)
-        self._tulos_var.set(self._sovelluslogiikka.tulos)
+        self._tulos_var.set(tulos)
