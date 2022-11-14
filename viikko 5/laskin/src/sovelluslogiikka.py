@@ -2,9 +2,6 @@ class Sovelluslogiikka:
     def __init__(self, tulos=0):
         self.tulos = [tulos]
 
-    def laskimen_arvo(self):
-        return self.tulos[-1]
-
     def miinus(self, arvo):
         uusi_arvo = self.laskimen_arvo() - arvo
         self.aseta_arvo(uusi_arvo)
@@ -21,3 +18,10 @@ class Sovelluslogiikka:
 
     def kumoa(self):
         self.tulokset.pop()
+    
+    def laskimen_arvo(self):
+        return self.tulos[-1]
+
+    @property
+    def tulokset(self):
+        return self.tulos

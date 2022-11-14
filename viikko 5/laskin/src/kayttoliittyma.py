@@ -28,7 +28,7 @@ class Kayttoliittyma:
             Komento.SUMMA: Funktio(sovelluslogiikka.plus, self._lue_syote),
             Komento.EROTUS: Funktio(sovelluslogiikka.miinus, self._lue_syote),
             Komento.NOLLAUS: Funktio(sovelluslogiikka.nollaa),
-            Komento.KUMOA: Funktio(sovelluslogiikka, self._lue_syote)
+            Komento.KUMOA: Funktio(sovelluslogiikka.kumoa)
         }
 
     def kaynnista(self):
@@ -78,11 +78,14 @@ class Kayttoliittyma:
             return
 
     def _suorita_komento(self, komento):
-        komento_olio = self._komennot[komento]
-        komento_olio.suorita()
+        self._komennot[komento].suorita()
+
         tulos = self._sovelluslogiikka.laskimen_arvo()
 
-        self._kumoa_painike["state"] = constants.NORMAL
+        if len(self._sovelluslogiikka.tulokset) > 1:
+            self._kumoa_painike["state"] = constants.NORMAL
+        else:
+            self._kumoa_painike["state"] = constants.DISABLED
 
         if tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
