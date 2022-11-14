@@ -1,6 +1,12 @@
 from statistics import Statistics
 from player_reader import PlayerReader
-from matchers import And, Not, HasAtLeast, HasFewerThan, PlaysIn
+from matchers import And, Not, Or, HasAtLeast, HasFewerThan, PlaysIn
+
+def print_players(stats, matcher):
+    for player in stats.matches(matcher):
+        print(player)
+
+    print()
 
 def main():
     url = "https://nhlstatisticsforohtu.herokuapp.com/players.txt"
@@ -12,18 +18,32 @@ def main():
         PlaysIn("NYR")
     )
 
-    matcher2 = And(
+    print_players(stats, matcher)
+
+    matcher = And(
         HasFewerThan(1, "goals"),
         PlaysIn("NYR")
     )
 
-    for player in stats.matches(matcher):
-        print(player)
-        
-    print()
+    print_players(stats, matcher)
 
-    for player in stats.matches(matcher2):
-        print(player)
+    matcher = Or(
+        HasAtLeast(30, "goals"),
+        HasAtLeast(50, "assists")
+    )
+
+    print_players(stats, matcher)
+
+    matcher = And(
+        HasAtLeast(40, "points"),
+        Or(
+            PlaysIn("NYR"),
+            PlaysIn("NYI"),
+            PlaysIn("BOS")
+        )
+    )
+
+    print_players(stats, matcher)
 
 if __name__ == "__main__":
     main()
