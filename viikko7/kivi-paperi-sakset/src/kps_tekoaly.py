@@ -1,8 +1,7 @@
-from tuomari import Tuomari
+from kps import KPS
 from tekoaly import Tekoaly
 
-
-class KPSTekoaly:
+class KPSTekoaly(KPS):
 	def __init__(self) -> None:
 		self._tekoaly = Tekoaly()
 
