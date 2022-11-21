@@ -2,6 +2,24 @@ from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 from kps_tekoaly import KPSTekoaly
 from kps_parempi_tekoaly import KPSParempiTekoaly
 
+class Tehdas:
+    @staticmethod
+    def uusi_p_vs_p():
+        return KPSPelaajaVsPelaaja()
+    
+    @staticmethod
+    def uusi_ai_vs_p():
+        return KPSTekoaly()
+
+    @staticmethod
+    def uusi_parempiAI_vs_p():
+        return KPSParempiTekoaly()
+
+def aloitus(peli):
+    print(
+        "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
+    )
+    peli.pelaa()
 
 def main():
     while True:
@@ -15,29 +33,16 @@ def main():
         vastaus = input()
 
         if vastaus.endswith("a"):
-            print(
-                "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
-            )
-
-            kaksinpeli = KPSPelaajaVsPelaaja()
-            kaksinpeli.pelaa()
+            aloitus(Tehdas.uusi_p_vs_p())
+            
         elif vastaus.endswith("b"):
-            print(
-                "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
-            )
+            aloitus(Tehdas.uusi_ai_vs_p())
 
-            yksinpeli = KPSTekoaly()
-            yksinpeli.pelaa()
         elif vastaus.endswith("c"):
-            print(
-                "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
-            )
+            aloitus(Tehdas.uusi_parempiAI_vs_p())
 
-            haastava_yksinpeli = KPSParempiTekoaly()
-            haastava_yksinpeli.pelaa()
         else:
             break
-
 
 if __name__ == "__main__":
     main()
